@@ -1,0 +1,7 @@
+.race-container {
+    border: 5px solid grey;
+    border-style: dashed;
+    min-height: 10vh;
+    width: 300px;
+    display: inline-block;
+}

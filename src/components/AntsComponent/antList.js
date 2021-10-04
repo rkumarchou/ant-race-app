@@ -1,33 +1,46 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
 import { useSelector } from "react-redux";
 import {
+  Container,
   Card,
-  CardActions,
+  CardMedia,
   CardContent,
   Typography,
-  Button,
-  Container,
   Grid,
-} from "@material-ui/core";
+} from "@mui/material";
+import Calculation from "../calculation";
 
-function AntList({ getAnts }) {
-  const data = useSelector((state) => state.ants.antList);
-  console.log("data", data);
-  // const { loading, error, data } = useQuery(getAnts);
-  // console.log("fhsjfhj", data);
-
-  // if (loading) return "Loading...";
-  // if (error) return `Error! ${error.message}`;
+const AntList = ({ getAnts }) => {
+  const { ants } = useSelector((state) => state);
+  const { antList, status } = ants;
+  const sortedList = antList.sort((a, b) => b.calculation - a.calculation);
 
   return (
-    <div>
-      <h4>List of ants will be displayed here</h4>
+    <div data-testid="tree-item">
+      <h4>List of ants</h4>
       <Container>
         <Grid container>
-          {data.map((ant) => (
-            <Grid item xs={12} md={6} lg={4}>
-              <Card xs={4}>
+          {sortedList.map((ant, antIndex) => (
+            <Grid
+              key={ant.name + ant.color}
+              item
+              xs={12}
+              md={6}
+              lg={4}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "auto auto auto auto",
+                gridGap: "10px",
+                marginBottom: "2%",
+              }}
+            >
+              <Card>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image="/images/ant.jpg"
+                  alt="ant image"
+                />
                 <CardContent>
                   <Typography variant="h5" component="div"></Typography>
                   <Typography sx={{ mb: 1.5 }} color="text.secondary">
@@ -49,6 +62,9 @@ function AntList({ getAnts }) {
                     {ant.status}
                     <br />
                   </Typography>
+                  {status !== "not yet run" && (
+                    <Calculation ant={ant} index={antIndex} />
+                  )}
                 </CardContent>
               </Card>
             </Grid>
@@ -57,6 +73,6 @@ function AntList({ getAnts }) {
       </Container>
     </div>
   );
-}
+};
 
 export default AntList;
