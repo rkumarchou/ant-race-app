@@ -5,24 +5,18 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 // imports to run redux
-import { createStore } from "redux";
 import { Provider } from "react-redux";
-import reducer from "./reducers";
+import configureStore from "./store";
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-
 const client = new ApolloClient({
-  uri: "https://sg-ants-server.herokuapp.com/graphql",
+  uri: process.env.REACT_APP_CORS_URL + process.env.REACT_APP_GRAPHQL_URL,
   cache: new InMemoryCache(),
 });
-const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
 
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <Provider store={store}>
+    <Provider store={configureStore()}>
       <App />
     </Provider>
   </ApolloProvider>,
