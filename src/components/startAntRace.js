@@ -30,6 +30,9 @@ const StartAntRace = () => {
           </Button>
         )}
       </div>
+      <div style={{ position: "fixed", right: "50%" }}>
+        {status === "inProgress" && <Loader />}
+      </div>
     </>
   );
 };
