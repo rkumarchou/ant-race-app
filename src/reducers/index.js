@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux'
-import antsReducer from './antReducer'
+import { combineReducers } from "redux";
+import antsReducer from "./antReducer";
 
 const rootReducer = combineReducers({
-    ants: antsReducer
-})
+  ants: antsReducer,
+});
 
-export default rootReducer
+export default rootReducer;
