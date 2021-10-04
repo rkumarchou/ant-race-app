@@ -3,7 +3,7 @@ import {
   START_RACE,
   END_RACE,
   RECEIVE_CALCULATION,
-  RESET_RACE
+  RESET_RACE,
 } from "./constants";
 import { generateAntWinLikelihoodCalculator } from "../utils/generateAntWinLikelihoodCalculator";
 
@@ -59,7 +59,6 @@ const getCalculation = (ant, index) => (dispatch) => {
 
   return generateCalculation((ant) => {
     calculate(ant).then((calculation) => {
-      console.log(ant, calculation);
       dispatch(receiveCalculation(index, calculation));
       dispatch(endRace());
     });

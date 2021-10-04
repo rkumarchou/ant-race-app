@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { startRace,resetRace } from "../actions";
+import { startRace, resetRace } from "../actions";
 import { list } from "../utils/helper";
 import Loader from "./loader";
 
@@ -23,15 +23,15 @@ const StartAntRace = () => {
         ) : (
           <Button
             variant="contained"
-            disabled={status === "inProgress"}
+            disabled={status === "in progress"}
             onClick={start}
           >
             Start Race
           </Button>
         )}
       </div>
-      <div style={{ position: "fixed", right: "50%" }}>
-        {status === "inProgress" && <Loader />}
+      <div style={{ position: "relative" }}>
+        {status === "in progress" && <Loader />}
       </div>
     </>
   );

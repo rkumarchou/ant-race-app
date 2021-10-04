@@ -8,6 +8,6 @@ export const resultData = (data) => {
 
 export const list = (antList) => {
   return antList.map((e) => {
-    return { ...e, status: "inProgress" };
+    return { ...e, status: "in progress" };
   });
 };

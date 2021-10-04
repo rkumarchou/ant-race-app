@@ -5,7 +5,7 @@ import { runCalculation } from "../actions";
 const Calculation = ({ ant, index }) => {
   const dispatch = useDispatch();
   useEffect(() => {
-    if (ant.status === "inProgress") {
+    if (ant.status === "in progress") {
       dispatch(runCalculation(ant, index));
     }
   }, [ant, index, dispatch]);

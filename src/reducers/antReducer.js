@@ -1,9 +1,7 @@
 const INITIAL_STATE = {
-  inProgress: false,
-  notYetRun: true,
   antList: {},
   ants: false,
-  status: 'notYetRun',
+  status: 'not yet run',
   calculationsByAnt: {},
 };
 
@@ -19,7 +17,7 @@ const ants = (state = INITIAL_STATE, action) => {
     case 'START_RACE':
       return {
         ...state,
-        status: 'inProgress',
+        status: 'in progress',
         antList: action.payload,
       };
 
@@ -30,7 +28,7 @@ const ants = (state = INITIAL_STATE, action) => {
           i === action.payload.index
             ? {
                 ...ant,
-                status: 'completed',
+                status: 'calculated',
                 calculation: action.payload.calculation,
               }
             : ant
@@ -40,17 +38,17 @@ const ants = (state = INITIAL_STATE, action) => {
       return {
         ...state,
 
-        status: state.antList.some((el) => el.status === 'inProgress')
-          ? 'inProgress'
-          : 'completed',
+        status: state.antList.some((el) => el.status === 'in progress')
+          ? 'in progress'
+          : 'all calculated',
       };
 
     case 'RESET_RACE':
       return {
         ...state,
-        status: 'notYetRun',
+        status: 'not yet run',
         antList: state.antList.map((ant) =>
-          ant.status === 'completed'
+          ant.status === 'calculated'
             ? { ...ant, status: 'not yet run', calculation: 0 }
             : ant
         ),

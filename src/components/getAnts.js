@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addAnts } from "../actions";
 import { resultData } from "../utils/helper";
 import { Button } from "@mui/material";
+import Loader from "./loader";
 
 const GetAnts = (props) => {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ const GetAnts = (props) => {
       dispatch(addAnts(result));
     }
   }, [data]);
-  if (loading) return "Loading...";
+  if (loading) return <Loader />;
   if (error) return `Error! ${error.message}`;
   if (data && data.ants) {
     result = resultData(data);

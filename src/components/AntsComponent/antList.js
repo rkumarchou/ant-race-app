@@ -8,9 +8,23 @@ import {
   Typography,
   Grid,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 import Calculation from "../calculation";
 
+const useStyles = makeStyles({
+  gridContainer: {
+    display: "grid",
+    gridTemplateColumns: "auto auto auto auto",
+    gridGap: "10px",
+    marginBottom: "2%",
+  },
+  typo: {
+    fontSize: "1.5rem",
+  },
+});
+
 const AntList = ({ getAnts }) => {
+  const classes = useStyles();
   const { ants } = useSelector((state) => state);
   const { antList, status } = ants;
   const sortedList = antList.sort((a, b) => b.calculation - a.calculation);
@@ -27,12 +41,7 @@ const AntList = ({ getAnts }) => {
               xs={12}
               md={6}
               lg={4}
-              style={{
-                display: "grid",
-                gridTemplateColumns: "auto auto auto auto",
-                gridGap: "10px",
-                marginBottom: "2%",
-              }}
+              className={classes.gridContainer}
             >
               <Card>
                 <CardMedia
@@ -58,7 +67,7 @@ const AntList = ({ getAnts }) => {
                     {ant.length}
                     <br />
                   </Typography>
-                  <Typography variant="body2">
+                  <Typography variant="body2" className={classes.typo}>
                     {ant.status}
                     <br />
                   </Typography>
